@@ -1,0 +1,96 @@
+body {
+	background-color: #ddd;
+	font-family: 'MontserratBold' ,Helvetica,Arial,sans-serif;
+}
+
+span.menu ul li {
+	display: inline-block;
+	color: #3385FF;
+	margin-right: 15px;
+	margin-left: 15px;
+}
+
+span.menu ul li:hover {
+	-webkit-transform: rotate(5deg); 
+	-moz-transform: rotate(5deg); 
+	-o-transform: rotate(5deg);
+	-ms-transform: rotate(5deg);
+	color: gray;
+}
+
+span.menu a {
+	text-decoration: none;
+	color: black;
+}
+
+span.menu {
+	position: relative;
+
+}
+
+.container {
+	width: 80%;
+	text-align: center;
+	margin: 0px auto;
+	padding-bottom: 20px;
+}
+
+.container #mainInstructions {
+	text-align: left;;
+}
+
+.container h1, .container h2 {
+	color: #3385FF;
+	font-size: 40px;
+	border-bottom: 1px solid black;
+
+}
+
+.container h2 {
+	font-size: 30px;
+	text-align: left
+}
+
+#social {
+	margin: 0px auto;
+}
+
+#pluginDescription label{
+	font-weight: bold;
+	font-size: 19px;
+	display: block;
+	margin-bottom: 10px;
+	color: #3385FF;
+}
+
+#pluginDescription h4{
+	text-align: left;
+}
+
+#methods {
+	text-align: left;
+}
+
+#methods label {
+	color: #3385FF;
+	font-size: 15px;
+}
+
+#methods li {
+	margin-bottom: 3px;
+}
+
+span.ex {
+	color: gray;
+}
+
+span.ex-func {
+	display: block;
+	color: gray;
+	margin-top: 3px;
+	text-indent: 10px;
+}
+
+#questions {
+	text-align: left;
+}

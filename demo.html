@@ -1,0 +1,283 @@
+<html>
+<head>
+
+	<meta charset='UTF-8' lang='en'>
+
+	<title>Customizable Social Button Plugin</title>
+
+	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<link rel="stylesheet" type="text/css" href="css/demo.css">
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+	<script type="text/javascript" src='js/customSocial.js'></script>
+
+	<script type="text/javascript">
+
+		$(window).on('ready', function() {
+
+			$('#social').customSocial({
+				
+				facebook: 'bcripps1',
+				twitter: 'itsbencripps',
+				github: 'bencripps',
+				email: 'ben@benjamincripps.com',
+				customHover: true,
+				mainColor: 'white',
+				iconSize: '40px',
+				border: '1px solid #3385FF',
+				roundedBorder: '5px',
+				width: '300px',
+				onContainerClick: function() {
+
+					alert('hi');
+				}
+
+			});
+
+			//page functionality -- nothing to do with plugin
+
+			var scrollToPosition = function( event ) {
+
+				var buttonID = event.target.id;
+
+				switch ( buttonID ) {
+
+					case 'questionsButton':
+
+						$('html, body').animate({ scrollTop: $("#questions").offset().top }, 1000);
+						break;
+
+					case 'sampleButton':
+
+						$('html, body').animate({ scrollTop: $("#mainInstructions").offset().top }, 1000);
+						break;
+					
+					case 'methodsButton':
+
+						$('html, body').animate({ scrollTop: $("#methods").offset().top }, 1000);
+						break;
+
+					case 'descripButton':	
+
+						$('html, body').animate({ scrollTop: $("#pluginDescription").offset().top }, 1000);
+						break;
+				}
+			}
+
+			$('.menu ul li a').on('click', scrollToPosition );
+
+			$(window).on('scroll', function() {
+
+				var margin = $(document).scrollTop(),
+					menu = $('.menu'),
+					liElements = menu.children().children();
+
+				if (margin > 35) {
+					menu.css('top', margin - 55)
+					liElements.css('opacity', .2)
+				}
+
+				else {
+
+					menu.css('top', margin);
+					liElements.css('opacity', 1)
+
+				}
+
+			});
+
+		});	
+
+	</script>
+</head>
+<body>	
+
+	<div class='container'>
+
+		<h1>Customizable Social Button Plugin</h1>
+
+		<span class='menu'>
+
+			<ul>
+				<li><a href="#" id='descripButton'>description</a></li>
+				<li><a href="#" id='sampleButton'>code sample</a></li>
+				<li><a href="#" id='methodsButton'>attributes/methods</a></li>
+				<li><a href="#" id='questionsButton'>questions</a></li>
+
+			</ul>
+
+		</span>
+
+	</div>
+
+	<div class='container'>	
+
+		<div id='social'></div>
+
+	</div>
+
+	<div class='container' id='pluginDescription'>	
+
+		<h4><label>Completely customizable, all through plugin parameters:</label>
+
+		 Every aspect of the element, including the container, icons, and styling can be modified using the plugin. Event handling for all types of user interaction. No external CSS needs to be used, but can be added easily using the .customIcon class.
+
+		<h4>
+
+		<h4><label>Super Simple:</label> 
+
+		What you see is what you get, just a simple social tab without all the fuss. Set up in seconds, but no compromise on customization.
+
+		</h4>
+
+		<h4><label>No weight:</label> 
+
+		The plugin file size is under 5k gzipped.
+
+		</h4>
+
+		<h4><label>Easy to use:</label> 
+
+		Full documentation on all available attributes and methods.
+
+		</h4>
+
+	</div>
+
+	<div class='container'>	
+		
+		<div id='mainInstructions'>
+			<h2>Example Code:</h2>
+<pre>
+$('#social').customSocial({
+				
+	facebook: 'bcripps1',
+	twitter: 'itsbencripps',
+	github: 'bencripps',
+	email: 'ben@benjamincripps.com',
+	customHover: true,
+	mainColor: 'white',
+	iconSize: '40px',
+	border: '1px solid #3385FF',
+	roundedBorder: '5px',
+	width: '300px',
+	onContainerClick: function() {
+
+		alert('hi');
+	}
+
+});
+</pre>
+
+		</div>
+
+	</div>
+
+	<div class='container' id='methods'>
+
+		<h2>Attributes/Methods:</h2>
+
+		<h5>
+
+			<label>Available Networks:</label>
+			Simply add your user name, and the plugin will attach the URL.
+			<ul>
+				<li>facebook</li>
+				<li>twitter</li>
+				<li>email</li>
+				<li>github</li>
+				<li>googe plus</li>
+				<li>flickr</li>
+				<li>linked in</li>
+				<li>instagram</li>
+				<li>pinterest</li>
+				<li>tumblr</li>
+				<li>vine</li>
+			</ul>
+
+		</h5>
+
+		<h5>
+			<label>Icon Attributes:</label>
+
+			<ul>
+				<li>mainColor: <span class='ex'>[string]</span> the color of the icons. <span class='ex'>example '#ddd' or 'rgb(20,20,20)'</span></li>
+
+				<li>iconMargin: <span class='ex'>[string]</span> spacing between the icons. <span class='ex'>example '10px' or '10%'</span></li>
+
+				<li>iconSize: <span class='ex'>[string]</span> text-size for the icons. <span class='ex'>example '10px' or '10%'</span></li>
+
+			</ul>
+
+		</h5>
+
+		<h5>
+			<label>Container Attributes:</label>
+
+			<ul>
+				<li>width: <span class='ex'>[string]</span> width of the container. the container will default to 100% if no width is specified. <span class='ex'>example '400px' or '50%'</span></li>
+
+				<li>backgroundColor: <span class='ex'>[string]</span> background color for the container. <span class='ex'>example '#ddd' or 'rgb(20,20,20)'</span></li>
+
+				<li>border: <span class='ex'>[string]</span> border width, detail, and color. the default is none. <span class='ex'>example '1px solid blue'</span></li>
+
+				<li>roundedBorder: <span class='ex'>[string]</span> border-radius for the container. the default is none. <span class='ex'>example '5px' or '50%'</span></li>
+
+			</ul>
+
+		</h5>
+
+		<h5>
+			<label>Events:</label>
+
+			<ul>
+				<li>customHover: <span class='ex'>[boolean]</span> the plugin has a builtin hover method which applies opacity on mouseenter. the animation is done using the jQuery animate event. <span class='ex'>example true or false</span></li>
+
+				<li>onContainerClick: <span class='ex'>[function]</span> custom callback can be defined by user. a single argument is available, the jQuery object which has been clicked. 
+
+					<span class='ex-func'>
+						
+						onContainerClick: function( $node ) { alert( $node ) }
+ 
+					</span>
+
+				</li>
+
+				<li>onContainerMouseenter: <span class='ex'>[function]</span> custom callback can be defined by user. a single argument is available, the jQuery object which has been entered. 
+
+					<span class='ex-func'>
+						
+						onContainerMouseenter: function( $node ) { alert( $node ) }
+ 
+					</span>
+
+				</li>
+
+				<li>onIconClick: <span class='ex'>[function]</span> custom callback can be defined by user. a single argument is available, the jQuery object which has been clicked. <span class='ex'>see above.</span>
+
+				</li>
+
+				<li>onIconMousenter: <span class='ex'>[function]</span> custom callback can be defined by user. a single argument is available, the jQuery object which has been entered. <span class='ex'>see above.</span>
+
+				</li>
+
+			</ul>
+
+		</h5>
+
+	</div>
+
+	<div class='container' id='questions'>
+
+		<h2>Questions/Contribitions:</h2>
+
+		<h5>If you have any questions, please contact me at <a href="mailto:ben@benjamincripps.com">ben@benjamincripps.com</a>. If you'd like to contribute, the code is available on <a href="//github.com/bencripps">github</a>.
+		</h5> 
+
+
+	</div>	
+
+</body>
+</html>
