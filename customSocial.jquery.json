@@ -1,0 +1,28 @@
+{
+	"name": "customSocial",
+	"title": "customSocial Buttons Creator",
+	"description": "This is a tiny jQuery library which helps create some social buttons in a snap.",
+	"keywords": [
+		"social",
+		"forms",
+		"ui"
+	],
+	"version": "1.0.1",
+	"author": {
+		"name": "Benjamin Cripps",
+		"url": "http://benjamincripps.com"
+	},
+	"licenses": [
+		{
+			"type": "none",
+			"url":  "none"
+		}
+	],
+
+	"homepage": "http://benjamincripps.com/customSocial/demo.html",
+
+	 "dependencies": {
+		"jquery": ">=1.5",
+		"fontAwesome":  "4.1.0"
+	}
+}
