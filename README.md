@@ -26,10 +26,21 @@ Easy to Use:
 
 	Full documentation on all available attributes and methods.
 
+What's new with Version 1.1.0?
+-----------------------------
+
+Added Custom URL Option
+
+By adding an object with a url, you can now specify a custom URL for any icon: `facebook: {url: 'someURL.com' }`
+			
+Added icon for YouTube
+
+Fixed click event issue, where event was firing if an icon was clicked.
+
 Attributes/Methods:
 -------------------
 
-Available Networks/Icons: facebook, twitter, email, github, google plus, flickr, linkedin, instagram, pinterest, tumblr, vine.
+Available Networks/Icons: facebook, twitter, email, github, google plus, flickr, linkedin, instagram, pinterest, tumblr, vine, youtube.
 
 Icon Attributes:
 	

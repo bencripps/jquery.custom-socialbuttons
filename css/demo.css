@@ -18,6 +18,10 @@ span.menu ul li:hover {
 	color: gray;
 }
 
+select#responsiveMenu {
+	display: none;
+}
+
 span.menu a {
 	text-decoration: none;
 	color: black;
@@ -43,7 +47,6 @@ span.menu {
 	color: #3385FF;
 	font-size: 40px;
 	border-bottom: 1px solid black;
-
 }
 
 .container h2 {
@@ -94,3 +97,37 @@ span.ex-func {
 #questions {
 	text-align: left;
 }
+
+@media ( max-width: 705px ) {
+
+	span.menu ul li { 
+		font-size: 75%;
+		margin: 5px;
+	}
+
+	.container h1, .container h2 {
+		font-size: 140%;
+	}
+
+	.container h4 {
+		font-size: 16px;
+	}
+
+	pre {
+		font-size: 75%;
+	}
+
+	select#responsiveMenu {
+		display: block;
+		margin: 0px auto;
+		direction:rtl;
+		width: 100%;
+	}
+
+	#generalMenu {
+		display: none;
+	}
+
+}
+
+

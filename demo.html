@@ -3,6 +3,10 @@
 
 	<meta charset='UTF-8' lang='en'>
 
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+
+	<meta name="description" content="I'm learning to code 1 project at a time. Keep track of my progress by reading blog and checking out my completed projects!">
+
 	<title>Customizable Social Button Plugin</title>
 
 	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
@@ -19,19 +23,21 @@
 
 			$('#social').customSocial({
 				
-				facebook: 'bcripps1',
+				facebook: {url: 'facebook.com/bcripps1'},
 				twitter: 'itsbencripps',
 				github: 'bencripps',
+				youtube: 'bencripps',
 				email: 'ben@benjamincripps.com',
 				customHover: true,
 				mainColor: 'white',
 				iconSize: '40px',
 				border: '1px solid #3385FF',
 				roundedBorder: '5px',
-				width: '300px',
+				width: '35%',
 				onContainerClick: function() {
 
 					alert('hi');
+
 				}
 
 			});
@@ -40,7 +46,7 @@
 
 			var scrollToPosition = function( event ) {
 
-				var buttonID = event.target.id;
+				var buttonID = event.target.id !== 'responsiveMenu' ? event.target.id : $('#responsiveMenu').find(':selected').val();
 
 				switch ( buttonID ) {
 
@@ -64,31 +70,40 @@
 						$('html, body').animate({ scrollTop: $("#pluginDescription").offset().top }, 1000);
 						break;
 				}
-			}
+			},
 
+			headerScroll = function() {
+
+				if ( !$('#responsiveMenu').is(':visible') ) {
+
+					var margin = $(document).scrollTop(),
+						menu = $('.menu'),
+						liElements = menu.children().children();
+
+					if ( margin > 76 ) {
+						menu.css('top', margin - 76)
+						liElements.css('opacity', .2)
+					}
+
+					else {
+
+						menu.css('top', '0px');
+						liElements.css('opacity', 1)
+
+					}
+				}
+
+			};
+
+
+			// page events
 			$('.menu ul li a').on('click', scrollToPosition );
 
-			$(window).on('scroll', function() {
+			$('#responsiveMenu').on('change', scrollToPosition );
 
-				var margin = $(document).scrollTop(),
-					menu = $('.menu'),
-					liElements = menu.children().children();
+			$(window).on('scroll', headerScroll );
 
-				if (margin > 35) {
-					menu.css('top', margin - 55)
-					liElements.css('opacity', .2)
-				}
-
-				else {
-
-					menu.css('top', margin);
-					liElements.css('opacity', 1)
-
-				}
-
-			});
-
-		});	
+		});
 
 	</script>
 </head>
@@ -100,13 +115,23 @@
 
 		<span class='menu'>
 
-			<ul>
+			<ul id='generalMenu'>
+
 				<li><a href="#" id='descripButton'>description</a></li>
 				<li><a href="#" id='sampleButton'>code sample</a></li>
 				<li><a href="#" id='methodsButton'>attributes/methods</a></li>
 				<li><a href="#" id='questionsButton'>questions</a></li>
 
 			</ul>
+
+			<select id='responsiveMenu'>
+
+				<option value='descripButton'>description</option>
+				<option value='sampleButton'>code sample</option>
+				<option value='methodsButton'>attributes/methods</option>
+				<option value='questionsButton'>questions</option>
+
+			</select>	
 
 		</span>
 
@@ -124,7 +149,7 @@
 
 		 Every aspect of the element, including the container, icons, and styling can be modified using the plugin. Event handling for all types of user interaction. No external CSS needs to be used, but can be added easily using the .customIcon class.
 
-		<h4>
+		</h4>
 
 		<h4><label>Super Simple:</label> 
 
@@ -134,7 +159,7 @@
 
 		<h4><label>No weight:</label> 
 
-		The plugin file size is under 5k gzipped.
+		The plugin file size is under 5k.
 
 		</h4>
 
@@ -153,25 +178,47 @@
 <pre>
 $('#social').customSocial({
 				
-	facebook: 'bcripps1',
+	facebook: {url: 'facebook.com/bcripps1'},
 	twitter: 'itsbencripps',
 	github: 'bencripps',
+	youtube: 'bencripps',
 	email: 'ben@benjamincripps.com',
 	customHover: true,
 	mainColor: 'white',
 	iconSize: '40px',
 	border: '1px solid #3385FF',
 	roundedBorder: '5px',
-	width: '300px',
+	width: '35%',
 	onContainerClick: function() {
 
 		alert('hi');
-	}
 
+	}
 });
 </pre>
 
 		</div>
+
+	</div>
+
+	<div class="container" id="new" style="text-align:left">
+		<h2>What's new with Version 1.1.0?</h2>
+
+		<h5>
+			<label>Added Custom URL Option</label>
+
+			<ul>
+
+				<li>By adding an object with a url, you can now specify a custom URL for any icon: <span class='ex-func'>facebook: {url: 'someURL.com' }</span></li>
+				
+				<li>Added icon for YouTube</li>
+
+				<li>Fixed click event issue, where event was firing if an icon was clicked.</li>
+
+			</ul>
+
+
+		</h5>
 
 	</div>
 
@@ -182,19 +229,22 @@ $('#social').customSocial({
 		<h5>
 
 			<label>Available Networks:</label>
-			Simply add your user name, and the plugin will attach the URL.
+
+			<h5>Simply add your user name, and the plugin will attach the URL. <b>New:</b> or you can add an object containing a URL to specify a custom URL: <span class='ex'>twitter: { url: 'twitter.com' }</span></h5>
+
 			<ul>
 				<li>facebook</li>
 				<li>twitter</li>
 				<li>email</li>
 				<li>github</li>
-				<li>googe plus</li>
+				<li>google plus</li>
 				<li>flickr</li>
 				<li>linked in</li>
 				<li>instagram</li>
 				<li>pinterest</li>
 				<li>tumblr</li>
 				<li>vine</li>
+				<li>youtube</li>
 			</ul>
 
 		</h5>

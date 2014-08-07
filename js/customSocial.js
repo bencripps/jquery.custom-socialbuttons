@@ -37,74 +37,101 @@ $.fn.customSocial = function( defaults ) {
 
 		}, defaults ),
 
+	getURL = function( obj, string, tumblr ) {
+
+		var isObject = obj instanceof Object,
+				url; 
+
+				if ( !tumblr ) {
+
+					url = isObject ? obj.url : string + obj;
+
+				}
+
+				else {
+
+					url = isObject ? obj.url : obj + string;
+
+				}
+		
+		return url;
+
+	},
+
 	getIconStyling = function() {
 
 		return ' style="font-size:' + settings.iconSize + '; color: ' + settings.mainColor + '; margin: ' +  settings.iconMargin + ';';
 
 	},
 
-	getFBIcon = function( url ) {
+	getFBIcon = function( input ) {
 
-		return '<a href="//facebook.com/' + url + '"><i class="fa fa-facebook customIcon"' + getIconStyling() + '"></i></a>';
-
-	},
-
-	getTwitIcon = function( url ) {
-
-		return '<a href="//twitter.com/' + url + '"><i class="fa fa-twitter customIcon"' + getIconStyling() + '"></i></a>';
+		return '<a href="//' +  getURL( input, 'facebook.com/' ) + '"><i class="fa fa-facebook customIcon"' + getIconStyling() + '"></i></a>';
 
 	},
 
-	getEmailIcon = function( url ) {
+	getYouTubeIcon = function( input ) {
 
-		return '<a href="mailto:' + url + '"><i class="fa fa-envelope-square customIcon"' + getIconStyling() + '"></i></a>';
-
-	},
-
-	getGitIcon = function( url ) {
-
-		return '<a href="//github.com/' + url + '"><i class="fa fa-github customIcon"' + getIconStyling() + '"></i></a>';
-	},
-
-	getGooglePlusIcon = function( url ) {
-
-		return '<a href="//plus.google.com/s/' + url + '"><i class="fa fa-google-plus customIcon"' + getIconStyling() + '"></i></a>';
+		return '<a href="//' + getURL( input, 'youtube.com/' ) + '"><i class="fa fa-youtube customIcon"' + getIconStyling() + '"></i></a>';
 
 	},
 
-	getFlickrIcon = function( url ) {
+	getTwitIcon = function( input ) {
 
-		return '<a href="//flickr.com/photos/' + url + '"><i class="fa fa-flickr customIcon"' + getIconStyling() + '"></i></a>';
-
-	},
-
-	getLinkedInIcon = function( url ) {
-
-		return '<a href="//linkedin.com/users/' + url + '"><i class="fa fa-linkedin customIcon"' + getIconStyling() + '"></i></a>';
+		return '<a href="//' + getURL( input, 'twitter.com/' ) + '"><i class="fa fa-twitter customIcon"' + getIconStyling() + '"></i></a>';
 
 	},
 
-	getInstagramIcon = function( url ) {
+	getEmailIcon = function( input ) {
 
-		return '<a href="//instagram.com/' + url + '"><i class="fa fa-instagram customIcon"' + getIconStyling() + '"></i></a>';
-
-	},
-
-	getPinterestIcon = function( url ) {
-
-		return '<a href="//pinterest.com/' + url + '"><i class="fa fa-pinterest customIcon"' + getIconStyling() + '"></i></a>';
+		return '<a href="' + getURL( input, 'mailto:' ) + '"><i class="fa fa-envelope-square customIcon"' + getIconStyling() + '"></i></a>';
 
 	},
 
-	getTumblrIcon = function( url ) {
+	getGitIcon = function( input ) {
 
-		return '<a href="//' + url + '.tumblr.com"><i class="fa fa-tumblr customIcon"' + getIconStyling() + '"></i></a>';
+		return '<a href="//' + getURL( input, 'github.com/' ) + '"><i class="fa fa-github customIcon"' + getIconStyling() + '"></i></a>';
+	},
+
+	getGooglePlusIcon = function( input ) {
+
+		return '<a href="//' + getURL( input, 'plus.google.com/s/' ) + '"><i class="fa fa-google-plus customIcon"' + getIconStyling() + '"></i></a>';
 
 	},
 
-	getVineIcon = function( url ) {
+	getFlickrIcon = function( input ) {
 
-		return '<a href="//vine.co/' + url + '"><i class="fa fa-vine customIcon"' + getIconStyling() + '"></i></a>';
+		return '<a href="//' + getURL( input, 'flickr.com/photos/' ) + '"><i class="fa fa-flickr customIcon"' + getIconStyling() + '"></i></a>';
+
+	},
+
+	getLinkedInIcon = function( input ) {
+
+		return '<a href="//' + getURL( input, 'linkedin.com/users/' ) + '"><i class="fa fa-linkedin customIcon"' + getIconStyling() + '"></i></a>';
+
+	},
+
+	getInstagramIcon = function( input ) {
+
+		return '<a href="//' + getURL( input, 'instagram.com/' ) + '"><i class="fa fa-instagram customIcon"' + getIconStyling() + '"></i></a>';
+
+	},
+
+	getPinterestIcon = function( input ) {
+
+		return '<a href="//' + getURL( input, 'pinterest.com/' ) + '"><i class="fa fa-pinterest customIcon"' + getIconStyling() + '"></i></a>';
+
+	},
+
+	getTumblrIcon = function( input ) {
+
+		return '<a href="//' + getURL( input, '.tumblr.com', 'tumblr' ) + '"><i class="fa fa-tumblr customIcon"' + getIconStyling() + '"></i></a>';
+
+	},
+
+	getVineIcon = function( input ) {
+
+		return '<a href="//vine.co/' + getURL( input, '//vine.co/' ) + '"><i class="fa fa-vine customIcon"' + getIconStyling() + '"></i></a>';
 
 	},
 
@@ -178,6 +205,12 @@ $.fn.customSocial = function( defaults ) {
 
 		}
 
+		if ( settings.youtube ) {
+
+			HTMLinsert+= getYouTubeIcon( settings.youtube );
+
+		}
+
 		return HTMLinsert;
 
 	},
@@ -206,7 +239,11 @@ $.fn.customSocial = function( defaults ) {
 
 	this.on('click', function(event) {
 
-		settings.onContainerClick.call(this);
+		if ( event.target.id === $(this).attr('id') ) {
+
+			settings.onContainerClick.call(this);
+
+		}
 
 	});
 
@@ -243,10 +280,9 @@ $.fn.customSocial = function( defaults ) {
 
 				hover( $(this) );
 
-			}	
+			}
 
 		});
-
 
 	});
 	
